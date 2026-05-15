@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snorre Sulheim · Systems Biologist</title>
+<meta name="description" content="SNSF Postdoctoral Fellow at UNIL. Systems biologist bridging computational modeling and experimental microbiology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f3ee;
+  --bg2: #ede9e1;
+  --ink: #1c1a17;
+  --ink2: #5a5650;
+  --ink3: #9a9590;
+  --accent: #1d5c3a;
+  --accent2: #2e7d52;
+  --rule: #dad6ce;
+  --card: #faf8f5;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display: flex; justify-content:space-between; align-items:center;
+  padding: 1rem 3rem;
+  background: rgba(246,243,238,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-brand { font-size:0.88rem; font-family:var(--mono); color:var(--ink2); text-decoration:none; letter-spacing:0.01em; }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a { font-family:var(--mono); font-size:0.75rem; color:var(--ink2); text-decoration:none; letter-spacing:0.05em; transition:color 0.2s; }
+.nav-links a:hover { color:var(--accent); }
+
+/* HERO */
+.hero { min-height:100vh; display:flex; align-items:center; padding:8rem 3rem 5rem; max-width:1100px; margin:0 auto; }
+.hero-inner { display:grid; grid-template-columns:1fr 360px; gap:5rem; align-items:center; width:100%; }
+.hero-eyebrow { font-family:var(--mono); font-size:0.72rem; color:var(--accent2); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.2rem; }
+.hero h1 { font-size:clamp(2.6rem,5vw,4rem); font-weight:400; line-height:1.08; letter-spacing:-0.02em; margin-bottom:1.8rem; }
+.hero h1 em { font-style:italic; color:var(--accent); }
+.hero-desc { font-size:1.1rem; color:var(--ink2); max-width:520px; margin-bottom:2rem; line-height:1.8; }
+.hero-badges { display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:2.2rem; }
+.badge { font-family:var(--mono); font-size:0.68rem; padding:0.28rem 0.7rem; border-radius:2px; border:1px solid var(--rule); color:var(--ink2); background:var(--card); letter-spacing:0.04em; }
+.badge.green { background:#e6f0ea; border-color:#a8c9b4; color:var(--accent); }
+.hero-cta { display:flex; gap:0.8rem; flex-wrap:wrap; }
+.btn { font-family:var(--mono); font-size:0.75rem; padding:0.65rem 1.3rem; text-decoration:none; border-radius:2px; letter-spacing:0.05em; transition:all 0.2s; display:inline-flex; align-items:center; gap:0.4rem; }
+.btn-primary { background:var(--accent); color:#fff; border:1px solid var(--accent); }
+.btn-primary:hover { background:var(--accent2); border-color:var(--accent2); }
+.btn-outline { background:transparent; color:var(--ink2); border:1px solid var(--rule); }
+.btn-outline:hover { border-color:var(--accent2); color:var(--accent); }
+
+.hero-side { display:flex; flex-direction:column; gap:1.1rem; }
+.stat-box { background:var(--card); border:1px solid var(--rule); padding:1.2rem 1.3rem; border-radius:3px; }
+.stat-box .stat-num { font-size:1.9rem; font-weight:400; color:var(--ink); line-height:1; margin-bottom:0.3rem; }
+.stat-box .stat-label { font-family:var(--mono); font-size:0.67rem; color:var(--ink3); letter-spacing:0.06em; text-transform:uppercase; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+.stat-path { font-size:0.82rem; font-family:var(--mono); font-weight:300; color:var(--ink2); line-height:1.6; }
+
+/* SECTIONS */
+section { padding:6rem 3rem; }
+.section-inner { max-width:1100px; margin:0 auto; }
+.section-label { font-family:var(--mono); font-size:0.68rem; color:var(--accent2); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.7rem; }
+.section-title { font-size:clamp(1.8rem,3vw,2.4rem); font-weight:400; line-height:1.15; letter-spacing:-0.015em; margin-bottom:0.5rem; }
+.section-title em { font-style:italic; color:var(--accent); }
+.section-sub { color:var(--ink2); font-size:0.97rem; max-width:540px; margin-bottom:3rem; }
+hr.rule { border:none; border-top:1px solid var(--rule); margin:0 3rem; }
+
+/* HYBRID CARDS */
+.hybrid-bg { background:var(--bg2); }
+.hybrid-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.3rem; }
+.hcard { background:var(--card); border:1px solid var(--rule); border-radius:3px; padding:1.8rem; }
+.hcard-icon { width:34px; height:34px; background:#e6f0ea; border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:1.1rem; }
+.hcard-icon svg { width:16px; height:16px; stroke:var(--accent); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.hcard h3 { font-size:1.05rem; font-weight:400; margin-bottom:0.55rem; }
+.hcard p { font-size:0.87rem; color:var(--ink2); line-height:1.7; }
+.hcard ul { list-style:none; margin-top:0.9rem; display:flex; flex-wrap:wrap; gap:0.35rem; }
+.hcard ul li { font-family:var(--mono); font-size:0.63rem; color:var(--accent); background:#e6f0ea; padding:0.18rem 0.55rem; border-radius:2px; letter-spacing:0.04em; }
+
+/* PUBLICATIONS */
+.pub-grid { display:flex; flex-direction:column; gap:1rem; }
+.pub-card { background:var(--card); border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
+.pub-card-header { display:grid; grid-template-columns:60px 1fr auto; gap:1.2rem; align-items:start; padding:1.4rem 1.6rem; cursor:pointer; user-select:none; transition:background 0.15s; }
+.pub-card-header:hover { background:#f0ece4; }
+.pub-year { font-family:var(--mono); font-size:0.7rem; color:var(--ink3); padding-top:0.15rem; }
+.pub-title { font-size:0.93rem; font-weight:300; line-height:1.55; }
+.pub-title strong { font-weight:400; }
+.pub-journal { font-family:var(--mono); font-size:0.67rem; color:var(--ink3); margin-top:0.25rem; }
+.pub-header-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.4rem; padding-top:0.1rem; }
+.pub-award { font-family:var(--mono); font-size:0.62rem; color:#8a5e00; background:#fdf0cc; border:1px solid #e8d090; padding:0.18rem 0.55rem; border-radius:2px; white-space:nowrap; }
+.pub-tag { font-family:var(--mono); font-size:0.62rem; padding:0.18rem 0.55rem; border-radius:2px; white-space:nowrap; }
+.tag-blue { color:#1a4f8a; background:#e0ecfa; border:1px solid #b0cfef; }
+.tag-green { color:var(--accent); background:#e6f0ea; border:1px solid #a8c9b4; }
+.pub-chevron { font-family:var(--mono); font-size:0.65rem; color:var(--ink3); margin-top:0.5rem; transition:transform 0.2s; }
+.pub-card.open .pub-chevron { transform:rotate(180deg); }
+.pub-body { display:none; padding:0 1.6rem 1.5rem; border-top:1px solid var(--rule); }
+.pub-card.open .pub-body { display:block; }
+.pub-body-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem 2.5rem; margin-top:1.2rem; }
+.pub-body-section h4 { font-family:var(--mono); font-size:0.63rem; color:var(--ink3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem; }
+.pub-body-section p { font-size:0.85rem; color:var(--ink2); line-height:1.65; }
+.pub-skills { margin-top:1.2rem; }
+.pub-skills h4 { font-family:var(--mono); font-size:0.63rem; color:var(--ink3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem; }
+.pub-skills ul { list-style:none; display:flex; flex-wrap:wrap; gap:0.35rem; }
+.pub-skills ul li { font-family:var(--mono); font-size:0.63rem; color:var(--accent); background:#e6f0ea; border:1px solid #a8c9b4; padding:0.18rem 0.55rem; border-radius:2px; letter-spacing:0.03em; }
+
+/* CV */
+.cv-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+.cv-col h3 { font-family:var(--mono); font-size:0.67rem; letter-spacing:0.12em; color:var(--ink3); text-transform:uppercase; margin-bottom:1.4rem; padding-bottom:0.55rem; border-bottom:1px solid var(--rule); }
+.timeline { display:flex; flex-direction:column; }
+.tl-item { padding:0.9rem 0 0.9rem 1.3rem; border-left:1px solid var(--rule); position:relative; }
+.tl-item::before { content:''; position:absolute; left:-4px; top:1.35rem; width:7px; height:7px; border-radius:50%; background:var(--accent); border:1.5px solid var(--bg2); }
+.tl-date { font-family:var(--mono); font-size:0.66rem; color:var(--ink3); letter-spacing:0.04em; margin-bottom:0.15rem; }
+.tl-role { font-size:0.92rem; font-weight:400; }
+.tl-org { font-size:0.82rem; color:var(--ink2); }
+
+/* GRANTS */
+.grants-list { display:flex; flex-direction:column; gap:0.8rem; }
+.grant-item { display:flex; gap:1.2rem; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--rule); border-radius:3px; align-items:flex-start; }
+.grant-amount { font-family:var(--mono); font-size:0.8rem; color:var(--accent); font-weight:400; min-width:80px; padding-top:0.1rem; }
+.grant-desc { font-size:0.87rem; color:var(--ink2); }
+.grant-desc strong { color:var(--ink); font-weight:400; }
+
+/* CONTACT */
+.contact-bg { background:var(--ink); color:#e8e4dc; }
+.contact-bg .section-label { color:#7ab896; }
+.contact-bg .section-title { color:#e8e4dc; }
+.contact-bg .section-title em { color:#7ab896; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+.contact-desc { font-size:0.97rem; color:#a09b93; line-height:1.8; max-width:400px; }
+.contact-links { display:flex; flex-direction:column; gap:0.7rem; }
+.contact-link { display:flex; align-items:center; gap:0.9rem; padding:0.85rem 1rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:3px; text-decoration:none; color:#c8c3bb; font-size:0.87rem; transition:all 0.2s; }
+.contact-link:hover { background:rgba(255,255,255,0.09); color:#e8e4dc; }
+.cl-label { font-family:var(--mono); font-size:0.63rem; color:#7ab896; letter-spacing:0.08em; text-transform:uppercase; min-width:56px; }
+
+footer { background:var(--ink); border-top:1px solid rgba(255,255,255,0.07); padding:1.4rem 3rem; text-align:center; font-family:var(--mono); font-size:0.66rem; color:#4a4640; letter-spacing:0.04em; }
+.stat-source { font-family:var(--mono); font-size:0.6rem; color:var(--ink3); letter-spacing:0.05em; margin-top:0.25rem; opacity:0.7; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.stat-loading { animation:pulse 1.4s ease-in-out infinite; color:var(--ink3); }
+
+@media(max-width:900px){
+  nav { padding:1rem 1.5rem; }
+  .nav-links { gap:1.2rem; }
+  .hero { padding:6rem 1.5rem 4rem; }
+  .hero-inner { grid-template-columns:1fr; gap:3rem; }
+  .hero-side { display:grid; grid-template-columns:1fr 1fr; }
+  section { padding:4rem 1.5rem; }
+  hr.rule { margin:0 1.5rem; }
+  .hybrid-grid { grid-template-columns:1fr; }
+  .pub-item { grid-template-columns:56px 1fr; }
+  .pub-item > *:last-child { grid-column:2; }
+  .cv-grid { grid-template-columns:1fr; gap:2.5rem; }
+  .contact-grid { grid-template-columns:1fr; gap:2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">snorre sulheim</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#research">research</a></li>
+    <li><a href="#publications">publications</a></li>
+    <li><a href="#cv">cv</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="about" class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Systems Biologist &middot; Available for roles in Europe</p>
+      <h1>Systems biologist<br>bridging <em>computation</em><br>and experiment</h1>
+      <p class="hero-desc">
+        I use metabolic modeling, multi-omics, and wet-lab experiments to understand how microbial metabolism shapes ecosystem function — and to guide microbiome design. My research spans three complementary phases: genome-scale metabolic modeling in Eivind Almaas' lab at NTNU and the Segrè Lab at Boston University; applied biotech, bioinformatics, and data management at SINTEF Industry; and microbial ecology, microbiome research, and wet-lab work in Sara Mitri's group at the University of Lausanne, as part of the Swiss NCCR Microbiomes. I have contributed to ~20 grant applications, secured competitive personal funding twice, and delivered results both in peer-reviewed journals and to industrial collaborators.
+      </p>
+      <div class="hero-badges">
+        <span class="badge green">Genome-scale metabolic modeling</span>
+        <span class="badge green">Experimental microbiology</span>
+        <span class="badge green">Microbial communities</span>
+        <span class="badge green">Multi-omics</span>
+        <span class="badge">Bioinformatics pipelines</span>
+        <span class="badge">Streptomyces / natural products</span>
+        <span class="badge">Python &middot; R</span>
+        <span class="badge">Remote · Hybrid · On-site Bergen</span>
+      </div>
+      <div class="hero-cta">
+        <a href="mailto:ssulheim@gmail.com" class="btn btn-primary">Get in touch →</a>
+        <a href="https://scholar.google.no/citations?user=CKlHqy8AAAAJ&hl=no" target="_blank" class="btn btn-outline">Google Scholar</a>
+        <a href="https://github.com/sulheim" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="stat-citations">
+            <span class="stat-loading">—</span>
+          </div>
+          <div class="stat-label">citations</div>
+          <div class="stat-source">via OpenAlex</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="stat-hindex">
+            <span class="stat-loading">—</span>
+          </div>
+          <div class="stat-label">h-index</div>
+          <div class="stat-source">via OpenAlex</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="stat-works">
+          <span class="stat-loading">—</span>
+        </div>
+        <div class="stat-label">publications</div>
+        <div class="stat-source">via OpenAlex</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-path">Physics → Computational Biology<br>→ Experimental Microbiology</div>
+        <div class="stat-label" style="margin-top:0.5rem">multidisciplinary background</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- EXPERTISE -->
+<section id="research" class="hybrid-bg">
+  <div class="section-inner">
+    <p class="section-label">Expertise</p>
+    <h2 class="section-title">Computational <em>and</em> experimental</h2>
+    <p class="section-sub">A rare combination in systems biology: I build the models and run the experiments to test them.</p>
+
+    <div class="hybrid-grid">
+
+      <div class="hcard">
+        <div class="hcard-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Genome-scale metabolic modeling</h3>
+        <p>Construction, curation and simulation of GEMs for bacteria and microbial communities. Applied to strain engineering, natural product biosynthesis, and community-level metabolism in <em>Streptomyces</em>, <em>Prochlorococcus</em>, and gut microbiome contexts.</p>
+        <ul>
+          <li>GEM reconstruction</li><li>Flux balance analysis</li><li>Enzyme-constrained models</li><li>COBRApy</li><li>COMETS</li>
+        </ul>
+      </div>
+
+      <div class="hcard">
+        <div class="hcard-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+        </div>
+        <h3>Experimental microbiology</h3>
+        <p>Hands-on wet-lab work at SINTEF Industry and the University of Lausanne — microbial culturing, metabolomics, and experimental validation of computational predictions. Experienced in teaching undergraduate microbiology laboratory courses.</p>
+        <ul>
+          <li>Microbial culturing</li><li>Metabolomics</li><li>Omics data integration</li><li>Lab course teaching</li>
+        </ul>
+      </div>
+
+      <div class="hcard">
+        <div class="hcard-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Bioinformatics &amp; software tools</h3>
+        <p>Building open-source computational tools for biological research: automated biosynthetic gene cluster analysis, metabolic pathway reconstruction, and omics integration pipelines. Strong emphasis on reproducibility and usability.</p>
+        <ul>
+          <li>Python</li><li>R</li><li>Pipeline development</li><li>BGC analysis</li><li>Network analysis</li>
+        </ul>
+      </div>
+
+      <div class="hcard">
+        <div class="hcard-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M8 12H4m16 0h-4M12 8V4m0 16v-4M6.3 6.3l2.8 2.8m5.6 5.6l2.8 2.8M6.3 17.7l2.8-2.8m5.6-5.6l2.8-2.8"/></svg>
+        </div>
+        <h3>Microbial community research</h3>
+        <p>Studying metabolite exchange, competition, and cooperation in microbial communities — from natural ecosystems to engineered co-cultures. Current work at UNIL focuses on metabolite release dynamics and the ecological economics of microbial communities.</p>
+        <ul>
+          <li>Cross-feeding</li><li>Community modeling</li><li>Metabolite exchange</li><li>Ecological dynamics</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <p class="section-label">Selected publications</p>
+    <h2 class="section-title">Research output</h2>
+    <p class="section-sub">Full list on <a href="https://scholar.google.no/citations?user=CKlHqy8AAAAJ&hl=no" target="_blank" style="color:var(--accent)">Google Scholar</a>. * denotes equal contribution.</p>
+
+    <div class="pub-grid">
+
+      <!-- 2026 -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2026</div>
+          <div>
+            <div class="pub-title"><strong>Sulheim S</strong> et al. Cross-feeding enables robust coexistence between four bacterial species.</div>
+            <div class="pub-journal">In preparation &middot; Mitri Lab, UNIL</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-green">community</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>How does metabolic cross-feeding stabilize coexistence in a small synthetic microbial community of four bacterial species?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Combined wet-lab co-culture experiments with genome-scale metabolic modeling to identify the cross-feeding interactions that enable stable coexistence.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>Microbial co-cultures</li><li>Genome-scale modeling</li><li>Community ecology</li><li>Cross-feeding</li><li>COBRApy</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2025</div>
+          <div>
+            <div class="pub-title"><strong>Sulheim S</strong>, Broli G, Gillon A et al. Microbes use transporters to regulate the release of metabolites based on value.</div>
+            <div class="pub-journal">In review at Nature Microbiology</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-green">preprint</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>Do microbes actively regulate which metabolites they release into the environment, and if so, by what mechanism?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Integrated metabolomics, genomics, and transporter analysis across bacterial strains to show that metabolite release rate correlates with metabolite value, mediated by active transport.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>Metabolomics</li><li>Genomics</li><li>Transporter biology</li><li>Multi-omics integration</li><li>Wet-lab microbiology</li><li>Statistical analysis</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2023</div>
+          <div>
+            <div class="pub-title"><strong>Sulheim S</strong> &amp; Mitri S. Breaking down microbial hierarchies.</div>
+            <div class="pub-journal">Trends in Microbiology</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-blue">review</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>How do metabolic hierarchies structure microbial communities, and what breaks them down to enable coexistence?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Review of theoretical and experimental literature on competitive exclusion, metabolic niche partitioning, and the conditions under which hierarchical dominance breaks down in microbial ecosystems.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>Microbial ecology</li><li>Community theory</li><li>Scientific writing</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2021 Genome Biology -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2021</div>
+          <div>
+            <div class="pub-title">Bernstein DB*, <strong>Sulheim S</strong>* et al. Addressing uncertainty in genome-scale metabolic model reconstruction and analysis.</div>
+            <div class="pub-journal">Genome Biology 22, 64 &middot; *equal contribution</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-blue">modeling</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>How does uncertainty in genome annotation and model reconstruction propagate through genome-scale metabolic model predictions, and how can it be quantified?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Developed a framework to systematically introduce and track uncertainty at each step of GEM reconstruction, and evaluated its impact on flux predictions across multiple organisms.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>GEM reconstruction</li><li>Flux balance analysis</li><li>Uncertainty quantification</li><li>COBRApy</li><li>Python</li><li>Bioinformatics</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2021 Frontiers -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2021</div>
+          <div>
+            <div class="pub-title">Ofaim S*, <strong>Sulheim S</strong>* et al. Dynamic allocation of carbon storage and nutrient-dependent exudation in a revised genome-scale model of Prochlorococcus.</div>
+            <div class="pub-journal">Frontiers in Genetics &middot; *equal contribution</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-blue">modeling</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>How does the marine cyanobacterium <em>Prochlorococcus</em> allocate carbon between storage and exudation under fluctuating nutrient conditions?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Revised the genome-scale metabolic model of <em>Prochlorococcus</em> to include carbon storage dynamics and nutrient-dependent exudation, validated against experimental exudation data.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>GEM reconstruction</li><li>Dynamic FBA</li><li>Marine microbiology</li><li>Carbon metabolism</li><li>Model curation</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2021 BMC -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2021</div>
+          <div>
+            <div class="pub-title"><strong>Sulheim S</strong> et al. Automatic reconstruction of metabolic pathways from identified biosynthetic gene clusters.</div>
+            <div class="pub-journal">BMC Bioinformatics 22, 81</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-green">software</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>Can metabolic pathways for secondary metabolite biosynthesis be automatically reconstructed from biosynthetic gene cluster (BGC) annotations?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Developed a bioinformatics tool that maps antiSMASH BGC predictions to metabolic reactions, enabling automated integration of natural product pathways into genome-scale models.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>Bioinformatics pipeline</li><li>antiSMASH</li><li>BGC analysis</li><li>Natural products</li><li>Python</li><li>GEM integration</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2021 Nat Protocols -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2021</div>
+          <div>
+            <div class="pub-title">Dukovski I, Bajić D, … <strong>Sulheim S</strong>, … &amp; Segrè D. A metabolic modeling platform for the computation of microbial ecosystems in time and space (COMETS).</div>
+            <div class="pub-journal">Nature Protocols</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-blue">software</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>How can genome-scale metabolic models be used to simulate the spatial and temporal dynamics of microbial communities?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Protocol paper describing COMETS — a platform for dynamic, spatially-resolved community metabolic simulations using FBA. Contributed to development and validation of the platform.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>COMETS</li><li>Dynamic community modeling</li><li>Spatial modeling</li><li>FBA</li><li>Python</li><li>Community metabolism</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2020 iScience -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2020</div>
+          <div>
+            <div class="pub-title"><strong>Sulheim S</strong> et al. Enzyme-constrained models and omics analysis of <em>Streptomyces coelicolor</em> reveal metabolic changes that enhance heterologous production.</div>
+            <div class="pub-journal">iScience, Cell Press</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-award">🏆 Pub of the year 2020</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>What metabolic changes in <em>Streptomyces coelicolor</em> engineering strains explain their enhanced capacity for heterologous natural product production?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Built enzyme-constrained genome-scale models and integrated transcriptomics and proteomics data to identify limiting reactions and metabolic bottlenecks in production strains.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>Enzyme-constrained GEMs</li><li>Transcriptomics</li><li>Proteomics</li><li>Streptomyces</li><li>Natural products</li><li>Multi-omics integration</li><li>Strain engineering</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2018 -->
+      <div class="pub-card">
+        <div class="pub-card-header" onclick="this.closest('.pub-card').classList.toggle('open')">
+          <div class="pub-year">2018</div>
+          <div>
+            <div class="pub-title">Kumelj T*, <strong>Sulheim S</strong>* et al. Predicting strain engineering strategies using iKS1317: a genome-scale metabolic model of <em>Streptomyces coelicolor</em>.</div>
+            <div class="pub-journal">Biotechnology Journal &middot; *equal contribution</div>
+          </div>
+          <div class="pub-header-right">
+            <span class="pub-tag tag-green">modeling</span>
+            <span class="pub-chevron">▼</span>
+          </div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-body-grid">
+            <div class="pub-body-section">
+              <h4>Question</h4>
+              <p>Can a genome-scale metabolic model of <em>Streptomyces coelicolor</em> predict rational strain engineering strategies to boost secondary metabolite production?</p>
+            </div>
+            <div class="pub-body-section">
+              <h4>Approach</h4>
+              <p>Reconstructed and curated iKS1317, a high-quality GEM of <em>S. coelicolor</em>, and used FBA-based strain design algorithms to predict gene deletion and overexpression targets.</p>
+            </div>
+          </div>
+          <div class="pub-skills">
+            <h4>Skills</h4>
+            <ul><li>GEM reconstruction</li><li>Flux balance analysis</li><li>Strain design</li><li>Streptomyces</li><li>MATLAB</li><li>Biotechnology</li></ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CV -->
+<section id="cv" style="background:var(--bg2);">
+  <div class="section-inner">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">Experience &amp; <em>education</em></h2>
+    <p class="section-sub">A multidisciplinary path from applied physics to computational biology to experimental microbiology.</p>
+
+    <div class="cv-grid">
+      <div class="cv-col">
+        <h3>Positions</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2025</div>
+            <div class="tl-role">Visiting Researcher</div>
+            <div class="tl-org">University of Bergen, Dept. of Biosciences</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2023 – 2025</div>
+            <div class="tl-role">SNSF Postdoctoral Fellow</div>
+            <div class="tl-org">University of Lausanne, Dept. of Fundamental Microbiology</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2016 – 2022</div>
+            <div class="tl-role">Research Scientist</div>
+            <div class="tl-org">SINTEF Industry, Dept. of Biotechnology &amp; Nanomedicine</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2019 – 2020</div>
+            <div class="tl-role">Research Visit</div>
+            <div class="tl-org">Boston University, Daniel Segrè Lab</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2014 – 2016</div>
+            <div class="tl-role">Geophysicist &amp; Software Developer</div>
+            <div class="tl-org">Quad Geometrics</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-col">
+        <h3>Education</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2016 – 2021</div>
+            <div class="tl-role">PhD in Systems Biology</div>
+            <div class="tl-org">NTNU, Dept. of Biotechnology &amp; Food Science</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2009 – 2015</div>
+            <div class="tl-role">MSc in Applied Physics</div>
+            <div class="tl-org">NTNU, Dept. of Physics</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2013</div>
+            <div class="tl-role">Exchange Student, Physics</div>
+            <div class="tl-org">University of Otago, New Zealand</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:2.5rem;">Selected grants &amp; awards</h3>
+        <div class="grants-list" style="margin-top:1rem">
+          <div class="grant-item">
+            <div class="grant-amount">215k CHF</div>
+            <div class="grant-desc"><strong>SNSF Swiss Postdoctoral Fellowship</strong> (2023)</div>
+          </div>
+          <div class="grant-item">
+            <div class="grant-amount">1.75M NOK</div>
+            <div class="grant-desc"><strong>SINTEF SEP Project Grant</strong> (2021)</div>
+          </div>
+          <div class="grant-item">
+            <div class="grant-amount">Award</div>
+            <div class="grant-desc"><strong>Transdisciplinary publication of the year</strong>, Centre for Digital Life Norway (2020)</div>
+          </div>
+          <div class="grant-item">
+            <div class="grant-amount">150k NOK</div>
+            <div class="grant-desc"><strong>Transdisciplinary grant for young researchers</strong>, Centre for Digital Life Norway (2021)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" style="margin:0; border-color:rgba(255,255,255,0.08);">
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="section-inner">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Open to <em>collaboration</em></h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-desc">
+          I'm open to industry roles where computational modeling and experimental biology intersect — microbiome design, strain engineering, multi-omics, or bioinformatics pipelines. Available for remote or hybrid positions across Europe, or on-site in Bergen, Norway.
+        </p>
+        <br>
+        <p class="contact-desc" style="font-family:var(--mono); font-size:0.72rem; color:#5a5650; letter-spacing:0.06em; line-height:1.8;">
+          BERGEN, NORWAY<br>
+          REMOTE · HYBRID · ON-SITE IN BERGEN<br>
+          OPEN TO ROLES ACROSS EUROPE
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:ssulheim@gmail.com" class="contact-link">
+          <span class="cl-label">email</span>
+          ssulheim@gmail.com
+        </a>
+        <a href="https://scholar.google.no/citations?user=CKlHqy8AAAAJ&hl=no" target="_blank" class="contact-link">
+          <span class="cl-label">scholar</span>
+          Google Scholar profile
+        </a>
+        <a href="https://github.com/sulheim" target="_blank" class="contact-link">
+          <span class="cl-label">github</span>
+          github.com/sulheim
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  snorre sulheim &middot; systems biologist &middot; bergen, norway
+</footer>
+
+<script>
+(async function() {
+  const OPENALEX_ID = 'a5001910866';
+
+  function set(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  }
+
+  function fmt(n) {
+    if (n >= 1000) return (n/1000).toFixed(1).replace(/\.0$/,'') + 'k';
+    return String(n);
+  }
+
+  try {
+    const res = await fetch(
+      `https://api.openalex.org/authors/${OPENALEX_ID}`,
+      { headers: { 'Accept': 'application/json' } }
+    );
+    if (!res.ok) throw new Error('OpenAlex fetch failed');
+    const data = await res.json();
+    set('stat-citations', fmt(data.cited_by_count));
+    set('stat-hindex',    String(data.summary_stats?.h_index ?? '—'));
+    set('stat-works',     String(data.works_count));
+  } catch(e) {
+    // Silent fallback to last-known values
+    set('stat-citations', '477');
+    set('stat-hindex',    '11');
+    set('stat-works',     '12');
+  }
+})();
+</script>
+</body>
+</html>
