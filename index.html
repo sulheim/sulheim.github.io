@@ -225,7 +225,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,0.07); pad
         <div class="stat-num" id="stat-works">
           <span class="stat-loading">—</span>
         </div>
-        <div class="stat-label">publications</div>
+        <div class="stat-label">journal articles</div>
         <div class="stat-source">via OpenAlex</div>
       </div>
       <div class="stat-box">
@@ -730,15 +730,16 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,0.07); pad
   }
 
   try {
-    const res = await fetch(
-      `https://api.openalex.org/authors/${OPENALEX_ID}`,
-      { headers: { 'Accept': 'application/json' } }
-    );
-    if (!res.ok) throw new Error('OpenAlex fetch failed');
-    const data = await res.json();
-    set('stat-citations', fmt(data.cited_by_count));
-    set('stat-hindex',    String(data.summary_stats?.h_index ?? '—'));
-    set('stat-works',     String(data.works_count));
+    const [authorRes, worksRes] = await Promise.all([
+      fetch(`https://api.openalex.org/authors/${OPENALEX_ID}`, { headers: { 'Accept': 'application/json' } }),
+      fetch(`https://api.openalex.org/works?filter=author.id:${OPENALEX_ID},type:article&per-page=1`, { headers: { 'Accept': 'application/json' } })
+    ]);
+    if (!authorRes.ok || !worksRes.ok) throw new Error('OpenAlex fetch failed');
+    const author = await authorRes.json();
+    const works  = await worksRes.json();
+    set('stat-citations', fmt(author.cited_by_count));
+    set('stat-hindex',    String(author.summary_stats?.h_index ?? '—'));
+    set('stat-works',     String(works.meta?.count ?? '—'));
   } catch(e) {
     // Silent fallback to last-known values
     set('stat-citations', '477');
